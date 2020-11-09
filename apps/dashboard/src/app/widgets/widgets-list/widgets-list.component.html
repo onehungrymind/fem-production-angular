@@ -1,1 +1,25 @@
-<p>widgets-list works!</p>
+<mat-card>
+  <mat-card-title>
+    Widgets
+  </mat-card-title>
+  <mat-card-content>
+    <mat-list data-cy="widgets-list">
+      <mat-list-item
+        *ngFor="let widget of widgets"
+        attr.data-cy="widget-{{ widget.id }}-item"
+        class="mat-list-option"
+        (click)="selected.emit(widget)">
+        <span matLine attr.data-cy="widget-{{ widget.id }}-item-title">{{ widget.title }}</span>
+        <button
+          *ngIf="!readonly"
+          attr.data-cy="delete-widget-{{ widget.id }}-btn"
+          mat-icon-button
+          type="button"
+          color="warn"
+          (click)="deleted.emit(widget); $event.stopImmediatePropagation()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

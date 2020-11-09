@@ -1,8 +1,39 @@
-<div style="text-align: center;">
-  <h1>Welcome to dashboard!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-  />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<mat-toolbar color="primary" class="mat-elevation-z4">
+  <span>
+    <button data-cy="toggle-btn" mat-mini-fab (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </span>
+  <span class="spacer"></span>
+  <button class="login" data-cy="login-btn" mat-mini-fab>
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [opened]="true" mode="side" class="app-sidenav">
+    <ng-container>
+      <span class="logo">
+        <a [routerLink]="'/'">
+          <img src="assets/logo.png" alt="Logo" />
+        </a>
+      </span>
+      <mat-divider></mat-divider>
+      <mat-nav-list data-cy="nav-list">
+        <mat-list-item
+          *ngFor="let link of links"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          attr.data-cy="nav-item-{{ link.title }}"
+        >
+          <mat-icon matListIcon>{{ link.icon }}</mat-icon>
+          {{ link.title | uppercase }}
+        </mat-list-item>
+      </mat-nav-list>
+    </ng-container>
+  </mat-sidenav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '@fem/material';
 import { WidgetsListComponent } from './widgets-list.component';
 
 describe('WidgetsListComponent', () => {
@@ -8,7 +9,8 @@ describe('WidgetsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WidgetsListComponent ]
+      declarations: [ WidgetsListComponent ],
+      imports: [MaterialModule, NoopAnimationsModule],
     })
     .compileComponents();
   });

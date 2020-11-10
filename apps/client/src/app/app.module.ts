@@ -6,6 +6,7 @@ import { CoreDataModule } from '@fem/core-data';
 import { CoreStateModule } from '@fem/core-state';
 import { MaterialModule } from '@fem/material';
 import { AppComponent } from './app.component';
+import { UiToolbarModule } from '@fem/ui-toolbar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { AppComponent } from './app.component';
     CoreStateModule,
     HttpClientModule,
     MaterialModule,
+    UiToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

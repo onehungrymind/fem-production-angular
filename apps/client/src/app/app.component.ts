@@ -25,4 +25,8 @@ export class AppComponent implements OnInit {
   loadWidgets() {
     this.widgets$ = this.widgetsService.all();
   }
+
+  logout() {  }
+
+  toggleSidenav() { }
 }

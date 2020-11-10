@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreDataModule } from '@fem/core-data';
 import { CoreStateModule } from '@fem/core-state';
 import { MaterialModule } from '@fem/material';
+import { UiToolbarModule } from '@fem/ui-toolbar';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RoutingModule } from './routing.module';
@@ -30,6 +31,7 @@ import { WidgetsComponent } from './widgets/widgets.component';
     HttpClientModule,
     MaterialModule,
     RoutingModule,
+    UiToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

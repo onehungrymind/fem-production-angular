@@ -20,7 +20,8 @@
       "@fem/core-data": ["libs/core-data/src/index.ts"],
       "@fem/core-state": ["libs/core-state/src/index.ts"],
       "@fem/material": ["libs/material/src/index.ts"],
-      "@env/*": ["apps/dashboard/src/environments/*"]
+      "@env/*": ["apps/dashboard/src/environments/*"],
+      "@fem/ui-toolbar": ["libs/ui-toolbar/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

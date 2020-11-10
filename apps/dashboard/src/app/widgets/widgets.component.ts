@@ -56,24 +56,17 @@ export class WidgetsComponent implements OnInit {
   }
 
   createWidget(widget: Widget) {
-    const newWidget = Object.assign({}, widget, { id: this.getRandomID() });
-    this.widgets = [...this.widgets, newWidget];
+    console.log('WIDGET CREATED!', widget);
     this.resetForm();
   }
 
   updateWidget(widget: Widget) {
-    this.widgets = this.widgets.map((w) => {
-      return widget.id === w.id ? widget : w;
-    });
+    console.log('WIDGET UDPATED!', widget);
     this.resetForm();
   }
 
   deleteWidget(widget: Widget) {
-    this.widgets = this.widgets.filter((w) => widget.id !== w.id);
+    console.log('WIDGET DELETED!', widget);
     this.resetForm();
-  }
-
-  private getRandomID() {
-    return Math.random().toString(36).substring(7);
   }
 }

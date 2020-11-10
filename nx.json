@@ -51,6 +51,9 @@
     "client-e2e": {
       "tags": [],
       "implicitDependencies": ["client"]
+    },
+    "ui-toolbar": {
+      "tags": []
     }
   }
 }

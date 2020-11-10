@@ -46,6 +46,7 @@
     "@angular/router": "^10.1.0",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
+    "@nestjs/mapped-types": "^0.1.1",
     "@nestjs/platform-express": "^7.0.0",
     "@ngrx/store": "10.0.1",
     "@nrwl/angular": "10.3.2",
@@ -53,6 +54,7 @@
     "json-server": "^0.16.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.5",
+    "uuid": "^8.3.1",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {

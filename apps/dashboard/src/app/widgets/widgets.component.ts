@@ -3,12 +3,6 @@ import { Widget } from '@fem/api-interfaces';
 import { WidgetsService } from '@fem/core-data';
 import { Observable } from 'rxjs';
 
-const mockWidgets: Widget[] = [
-  { id: '1', title: 'Widget 01', description: 'Pending' },
-  { id: '2', title: 'Widget 02', description: 'Pending' },
-  { id: '3', title: 'Widget 03', description: 'Pending' },
-];
-
 const emptyWidget: Widget = {
   id: null,
   title: '',
@@ -56,17 +50,14 @@ export class WidgetsComponent implements OnInit {
   }
 
   createWidget(widget: Widget) {
-    console.log('WIDGET CREATED!', widget);
-    this.resetForm();
+    this.widgetsService.create(widget).subscribe((result) => this.reset());
   }
 
   updateWidget(widget: Widget) {
-    console.log('WIDGET UDPATED!', widget);
-    this.resetForm();
+    this.widgetsService.update(widget).subscribe((result) => this.reset());
   }
 
   deleteWidget(widget: Widget) {
-    console.log('WIDGET DELETED!', widget);
-    this.resetForm();
+    this.widgetsService.delete(widget).subscribe((result) => this.reset());
   }
 }

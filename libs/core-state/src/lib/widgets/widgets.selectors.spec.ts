@@ -1,15 +1,18 @@
-import { WidgetsEntity } from './widgets.models';
-import { State, widgetsAdapter, initialState } from './widgets.reducer';
+import {
+  WidgetsState,
+  widgetsAdapter,
+  initialWidgetsState,
+} from './widgets.reducer';
 import * as WidgetsSelectors from './widgets.selectors';
+
+import { Widget } from '@fem/api-interfaces';
+import { mockWidget } from '@fem/testing';
 
 describe('Widgets Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getWidgetsId = (it) => it['id'];
-  const createWidgetsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as WidgetsEntity);
+  const createWidget = (id: string, name = '') =>
+    ({ ...mockWidget, id: id } as Widget);
 
   let state;
 
@@ -17,12 +20,12 @@ describe('Widgets Selectors', () => {
     state = {
       widgets: widgetsAdapter.setAll(
         [
-          createWidgetsEntity('PRODUCT-AAA'),
-          createWidgetsEntity('PRODUCT-BBB'),
-          createWidgetsEntity('PRODUCT-CCC'),
+          createWidget('PRODUCT-AAA'),
+          createWidget('PRODUCT-BBB'),
+          createWidget('PRODUCT-CCC'),
         ],
         {
-          ...initialState,
+          ...initialWidgetsState,
           selectedId: 'PRODUCT-BBB',
           error: ERROR_MSG,
           loaded: true,
@@ -41,7 +44,7 @@ describe('Widgets Selectors', () => {
     });
 
     it('getSelected() should return the selected Entity', () => {
-      const result = WidgetsSelectors.getSelected(state);
+      const result = WidgetsSelectors.getSelectedWidget(state);
       const selId = getWidgetsId(result);
 
       expect(selId).toBe('PRODUCT-BBB');

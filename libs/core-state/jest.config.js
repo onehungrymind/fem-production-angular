@@ -14,6 +14,7 @@ module.exports = {
       },
     },
   },
+  coverageReporters: ['text'],
   coverageDirectory: '../../coverage/libs/core-state',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',

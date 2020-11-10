@@ -1,118 +1,106 @@
-import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { readFirst } from '@nrwl/angular/testing';
+import { ActionsSubject } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
-
-import { NxModule } from '@nrwl/angular';
-
-import { WidgetsEntity } from './widgets.models';
-import { WidgetsEffects } from './widgets.effects';
 import { WidgetsFacade } from './widgets.facade';
-
-import * as WidgetsSelectors from './widgets.selectors';
 import * as WidgetsActions from './widgets.actions';
-import {
-  WIDGETS_FEATURE_KEY,
-  State,
-  initialState,
-  reducer,
-} from './widgets.reducer';
+import { initialWidgetsState } from './widgets.reducer';
 
-interface TestSchema {
-  widgets: State;
-}
+import { mockWidget } from '@fem/testing';
 
 describe('WidgetsFacade', () => {
   let facade: WidgetsFacade;
-  let store: Store<TestSchema>;
-  const createWidgetsEntity = (id: string, name = '') =>
-    ({
-      id,
-      name: name || `name-${id}`,
-    } as WidgetsEntity);
+  let actionSubject;
+  const mockActionsSubject = new ActionsSubject();
+  let store: MockStore;
 
-  beforeEach(() => {});
-
-  describe('used in NgModule', () => {
-    beforeEach(() => {
-      @NgModule({
-        imports: [
-          StoreModule.forFeature(WIDGETS_FEATURE_KEY, reducer),
-          EffectsModule.forFeature([WidgetsEffects]),
-        ],
-        providers: [WidgetsFacade],
-      })
-      class CustomFeatureModule {}
-
-      @NgModule({
-        imports: [
-          NxModule.forRoot(),
-          StoreModule.forRoot({}),
-          EffectsModule.forRoot([]),
-          CustomFeatureModule,
-        ],
-      })
-      class RootModule {}
-      TestBed.configureTestingModule({ imports: [RootModule] });
-
-      store = TestBed.get(Store);
-      facade = TestBed.get(WidgetsFacade);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        WidgetsFacade,
+        provideMockStore({ initialState: initialWidgetsState }),
+        { provide: ActionsSubject, useValue: mockActionsSubject },
+      ],
     });
 
-    /**
-     * The initially generated facade::loadAll() returns empty array
-     */
-    it('loadAll() should return empty list with loaded == true', async (done) => {
-      try {
-        let list = await readFirst(facade.allWidgets$);
-        let isLoaded = await readFirst(facade.loaded$);
+    facade = TestBed.inject(WidgetsFacade);
+    actionSubject = TestBed.inject(ActionsSubject);
+    store = TestBed.inject(MockStore);
+  });
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(false);
+  it('should be created', () => {
+    expect(facade).toBeTruthy();
+  });
 
-        facade.dispatch(WidgetsActions.loadWidgets());
+  it('should have mutations', (done) => {
+    const action = WidgetsActions.createWidget({ widget: mockWidget });
+    actionSubject.next(action);
 
-        list = await readFirst(facade.allWidgets$);
-        isLoaded = await readFirst(facade.loaded$);
+    facade.mutations$.subscribe((result) => {
+      expect(result).toBe(action);
+      done();
+    });
+  });
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(true);
+  describe('should dispatch', () => {
+    it('select on select(widget.id)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
 
-        done();
-      } catch (err) {
-        done.fail(err);
-      }
+      facade.selectWidget(mockWidget.id);
+
+      const action = WidgetsActions.selectWidget({ selectedId: mockWidget.id });
+
+      expect(spy).toHaveBeenCalledWith(action);
     });
 
-    /**
-     * Use `loadWidgetsSuccess` to manually update list
-     */
-    it('allWidgets$ should return the loaded list; and loaded flag == true', async (done) => {
-      try {
-        let list = await readFirst(facade.allWidgets$);
-        let isLoaded = await readFirst(facade.loaded$);
+    it('loadWidgets on loadWidgets()', () => {
+      const spy = jest.spyOn(store, 'dispatch');
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(false);
+      facade.loadWidgets();
 
-        facade.dispatch(
-          WidgetsActions.loadWidgetsSuccess({
-            widgets: [createWidgetsEntity('AAA'), createWidgetsEntity('BBB')],
-          })
-        );
+      const action = WidgetsActions.loadWidgets();
 
-        list = await readFirst(facade.allWidgets$);
-        isLoaded = await readFirst(facade.loaded$);
+      expect(spy).toHaveBeenCalledWith(action);
+    });
 
-        expect(list.length).toBe(2);
-        expect(isLoaded).toBe(true);
+    it('loadWidget on loadWidget(widget.id)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
 
-        done();
-      } catch (err) {
-        done.fail(err);
-      }
+      facade.loadWidget(mockWidget.id);
+
+      const action = WidgetsActions.loadWidget({ widgetId: mockWidget.id });
+
+      expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('createWidget on createWidget(widget)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
+
+      facade.createWidget(mockWidget);
+
+      const action = WidgetsActions.createWidget({ widget: mockWidget });
+
+      expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('updateWidget on updateWidget(widget)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
+
+      facade.updateWidget(mockWidget);
+
+      const action = WidgetsActions.updateWidget({ widget: mockWidget });
+
+      expect(spy).toHaveBeenCalledWith(action);
+    });
+
+    it('delete on delete(model)', () => {
+      const spy = jest.spyOn(store, 'dispatch');
+
+      facade.deleteWidget(mockWidget);
+
+      const action = WidgetsActions.deleteWidget({ widget: mockWidget });
+
+      expect(spy).toHaveBeenCalledWith(action);
     });
   });
 });

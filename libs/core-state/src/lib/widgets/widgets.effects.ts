@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch, pessimisticUpdate } from '@nrwl/angular';
-import { map } from 'rxjs/operators';
-
-import * as fromWidgets from './widgets.reducer';
-import * as WidgetsActions from './widgets.actions';
 import { Widget } from '@fem/api-interfaces';
 import { WidgetsService } from '@fem/core-data';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { fetch, pessimisticUpdate } from '@nrwl/angular';
+import { map } from 'rxjs/operators';
+import * as WidgetsActions from './widgets.actions';
 
 @Injectable()
 export class WidgetsEffects {

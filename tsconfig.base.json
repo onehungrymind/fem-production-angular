@@ -16,11 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": ["apps/dashboard/src/environments/*"],
       "@fem/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@fem/core-data": ["libs/core-data/src/index.ts"],
       "@fem/core-state": ["libs/core-state/src/index.ts"],
       "@fem/material": ["libs/material/src/index.ts"],
-      "@env/*": ["apps/dashboard/src/environments/*"],
       "@fem/ui-toolbar": ["libs/ui-toolbar/src/index.ts"]
     }
   },

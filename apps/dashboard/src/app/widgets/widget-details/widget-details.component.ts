@@ -7,7 +7,7 @@ import { Widget } from '@fem/api-interfaces';
   styleUrls: ['./widget-details.component.scss']
 })
 export class WidgetDetailsComponent{
-  currentWidget: Widget;
+  currentWidget: Widget = {} as Widget;
   originalTitle = '';
   @Input() set widget(value: Widget) {
     if (value) this.originalTitle = value.title;

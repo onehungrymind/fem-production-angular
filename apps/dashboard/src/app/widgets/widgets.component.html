@@ -1,6 +1,6 @@
 <div class="component-container">
   <div class="list-component">
-    <fem-widgets-list [widgets]="widgets"
+    <fem-widgets-list [widgets]="widgets$ | async"
       (selected)="selectWidget($event)"
       (deleted)="deleteWidget($event)">
     </fem-widgets-list>

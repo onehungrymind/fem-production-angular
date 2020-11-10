@@ -3,12 +3,6 @@ import { Widget } from '@fem/api-interfaces';
 import { WidgetsFacade } from '@fem/core-state';
 import { Observable } from 'rxjs';
 
-const emptyWidget: Widget = {
-  id: null,
-  title: '',
-  description: '',
-};
-
 @Component({
   selector: 'fem-widgets',
   templateUrl: './widgets.component.html',
@@ -35,7 +29,7 @@ export class WidgetsComponent implements OnInit {
   }
 
   selectWidget(widget: Widget) {
-    this.widgetsFacade.selectWidget(widget);
+    this.widgetsFacade.selectWidget(widget?.id);
   }
 
   loadWidgets() {

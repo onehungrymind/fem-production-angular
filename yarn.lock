@@ -1580,6 +1580,39 @@
     optional "0.1.4"
     tslib "2.0.3"
 
+"@ngrx/effects@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-10.0.0.tgz#d58151b1d7f5731ea42de7ed239bbab3d5866542"
+  integrity sha512-HHcQQ6mj1Cd0rQgnX5Wp3f7G8PKhh+Rk+jofsOsE6aHQPuuNhmnDwSA1U4PT4sXNv6JmFi5GjUqBz+tuw83oFQ==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/entity@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-10.0.0.tgz#ad46f448c856c4c5902b7f9446af88a580f4d50d"
+  integrity sha512-vm8vR6hbJKuIq+PjX4C7li3thPPt1Wnrl9Zf2VYgSP+Mr6vaU0Q+5UgBIRbMDKS1AthGPv+MDVI+kAOlhOyDog==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/router-store@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-10.0.0.tgz#e162e69da138f5a3e2d194f9e81d76d117cd2124"
+  integrity sha512-naK+IlgTQNEWWlKndQIBS/EQZ2h3pRF4owF+4kVpn+OI5Il7+Nugf0spj+0IFGd21Z7YvBe9C54SQPOPP4HARg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/schematics@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-10.0.0.tgz#5e5b22b354bb725c48162e516cc770f9f20fe241"
+  integrity sha512-MAZaxTEzny92ISMmHPu1djQFZRDpC875mJ2WhBQrNe66EBXIkJq7feb9/26hH1mKmOqVR83k9TpXPsJA9YimgA==
+
+"@ngrx/store-devtools@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-10.0.0.tgz#018716afd3df89bd2fa1f603966878f82e80d727"
+  integrity sha512-+7SSPW9H+IdGX04QYmfgqYOeFM++PLD6CxGRUkIIc+6jFovanMS6CVKw6V+WeerPwoZaRn43cMIDj9FChMQ4oA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/store@10.0.1":
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-10.0.1.tgz#74c3bb383cc507f927ba63710cc6622f2f2859db"

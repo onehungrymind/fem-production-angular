@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Widget } from '@fem/api-interfaces';
-import { WidgetsService } from '@fem/core-data';
+import { WidgetsFacade } from '@fem/core-state';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,16 +9,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  widgets$: Observable<Widget[]>;
+  allWidgets$: Observable<Widget[]> = this.widgetsFacade.allWidgets$;
 
-  constructor(private widgetsService: WidgetsService) {}
+  constructor(private widgetsFacade: WidgetsFacade) {}
 
   ngOnInit(): void {
     this.loadWidgets();
   }
 
   loadWidgets() {
-    this.widgets$ = this.widgetsService.all();
+    this.widgetsFacade.loadWidgets();
   }
-
 }

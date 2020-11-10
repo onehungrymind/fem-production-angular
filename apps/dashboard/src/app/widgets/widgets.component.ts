@@ -15,39 +15,38 @@ const emptyWidget: Widget = {
   styleUrls: ['./widgets.component.scss'],
 })
 export class WidgetsComponent implements OnInit {
-  widgets$: Observable<Widget[]>;
-  selectedWidget: Widget;
+  allWidgets$: Observable<Widget[]> = this.widgetsFacade.allWidgets$;
+  selectedWidget$: Observable<Widget> = this.widgetsFacade.selectedWidget$;
 
   constructor(private widgetsFacade: WidgetsFacade) {}
 
   ngOnInit(): void {
     this.reset();
+    this.widgetsFacade.mutations$.subscribe((_) => this.reset())
   }
 
   reset() {
     this.loadWidgets();
-    this.selectWidget(emptyWidget);
+    this.selectWidget(null);
   }
 
   resetForm() {
-    this.selectWidget(emptyWidget);
+    this.selectWidget(null);
   }
 
   selectWidget(widget: Widget) {
-    this.selectedWidget = widget;
+    this.widgetsFacade.selectWidget(widget);
   }
 
   loadWidgets() {
-    this.widgets$ = this.widgetsFacade.loadWidgets();
+    this.widgetsFacade.loadWidgets();
   }
 
   saveWidget(widget: Widget) {
-    const result$ = this.widgetsFacade.saveWidget(widget);
-    result$.subscribe((result) => this.reset());
+    this.widgetsFacade.saveWidget(widget);
   }
 
   deleteWidget(widget: Widget) {
-    const result$ = this.widgetsFacade.deleteWidget(widget)
-    result$.subscribe((result) => this.reset());
+    this.widgetsFacade.deleteWidget(widget);
   }
 }

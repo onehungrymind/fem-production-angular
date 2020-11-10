@@ -13,6 +13,7 @@
     "e2e": "ng e2e",
     "serve:json": "json-server server/db.json",
     "serve:api": "nx run api:serve",
+    "serve:client": "nx run client:serve --port=4400 --open",
     "serve:web": "ng serve --open",
     "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\"",
     "affected:apps": "nx affected:apps",

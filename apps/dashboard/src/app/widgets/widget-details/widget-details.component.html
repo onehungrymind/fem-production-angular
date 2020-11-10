@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>
-    <span *ngIf="currentWidget.id; else elseBlock">
+    <span *ngIf="currentWidget?.id; else elseBlock">
       Editing {{ originalTitle }}
     </span>
     <ng-template #elseBlock>
@@ -13,7 +13,6 @@
         <input
           matInput
           placeholder="Title"
-          [(ngModel)]="currentWidget.title"
           type="text"
           name="title"
           required />
@@ -22,7 +21,6 @@
         <input
           matInput
           placeholder="Description"
-          [(ngModel)]="currentWidget.description"
           type="text"
           name="description"
           required />

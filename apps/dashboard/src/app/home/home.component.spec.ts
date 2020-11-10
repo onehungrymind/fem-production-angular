@@ -4,7 +4,7 @@ import { MaterialModule } from '@fem/material';
 import { WidgetsListComponent } from '../widgets/widgets-list/widgets-list.component';
 import { HomeComponent } from './home.component';
 
-describe('HomeComponent', () => {
+xdescribe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 

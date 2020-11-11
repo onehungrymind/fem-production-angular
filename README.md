@@ -2,11 +2,12 @@
 
 ![Angular Production Course App](apps/dashboard/src/assets/screenshots/app.png)
 
-This is the sample project for the Angular Production course for Frontend Masters. 
+This is the sample project for the Angular Production course for Frontend Masters.
 
-The sample project includes an Angular web application and a mock RESTful API  within an Nx workspace by NRWL. The Angular application uses state and data libs to manage state and handle server communication. The state lib is built around NgRx and the application is entirely reactive. 
+The sample project includes an Angular web application and a mock RESTful API within an Nx workspace by NRWL. The Angular application uses state and data libs to manage state and handle server communication. The state lib is built around NgRx and the application is entirely reactive.
 
 ## Prerequisites
+
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - Node.js and NPM – we recommend using [NVM (Linux/Mac)](https://github.com/creationix/nvm) or [NVM-Windows (Windows)](https://github.com/coreybutler/nvm-windows)
 - Install Angular CLI via `npm i -g @angular/cli`
@@ -49,3 +50,19 @@ You can have Cypress watch and restart tests on test file changes with this comm
 ```
 nx run dashboard-e2e:e2e --watch
 ```
+
+## Docker
+
+To start the application in a docker environment, we set up two Dockerfiles (one for each application, ex. client and api). We compose each of these via the `docker-compose.yaml` file.
+The `Dockerfile` is the main file which contains the image for the client application; `Dockerfile.api` is the image for the api.
+
+- To start the applications with docker-compose, use the following command: `docker-compose up --remove-orphans --build`.
+  - If you need to just start client or api, append the name of what you need to build (ex. `docker-compose up --remove-orphans --build api` if you just need the api).
+- To clean the containers, use the following command: `docker-compose down --rmi local -v --remove-orphans`.
+
+If you need to run the images directly without docker-compose, you will need the following commands:
+
+- First build the image: `docker build --tag fem:1.0 .`
+- Once image is built successfully run it with: `docker run --publish 4200:4200 --name fem fem:1.0`
+
+> NOTE: the `-f` flag may be needed when running an image named something other that `Dockerfile`.

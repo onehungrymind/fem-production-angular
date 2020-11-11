@@ -1,0 +1,40 @@
+version: '3.4'
+
+x-healthcheck-defaults: &default-healthchecks
+  interval: 30s
+  timeout: 10s
+  retries: 3
+
+x-nx-volumes: &nx-volumes
+  - ./:/usr/app
+  - /usr/app/node_modules
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+      args:
+        PORT: 3333
+    command: yarn serve:api
+    volumes:
+      *nx-volumes
+    ports:
+      - '3333:3333'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3333']
+      <<: *default-healthchecks
+
+  app:
+    build:
+      context: .
+      args:
+        PORT: 4200
+    command: yarn serve:web
+    volumes:
+      *nx-volumes
+    ports:
+      - '4200:4200'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:4200']
+      <<: *default-healthchecks

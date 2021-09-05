@@ -1,37 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Widget } from '@fem/api-interfaces';
+import { Item } from '@fem/api-interfaces';
+
 
 const API_ENDPOINT = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root',
 })
-  
-export class WidgetsService {
-  model = 'widgets';
+export class ItemsService {
+  model = 'items';
 
   constructor(private http: HttpClient) {}
 
   all() {
-    return this.http.get<Widget[]>(this.getUrl());
+    return this.http.get<Item[]>(this.getUrl());
   }
 
   find(id: string) {
-    return this.http.get<Widget[]>(this.getUrlWithId(id));
+    return this.http.get<Item[]>(this.getUrlWithId(id));
   }
 
-  create(widget: Widget) {
+  create(widget: Item) {
     return this.http.post(this.getUrl(), widget);
   }
 
-  update(widget: Widget) {
+  update(widget: Item) {
     return this.http.put(this.getUrlWithId(widget.id), widget);
   }
 
-  delete(widget: Widget) {
+  delete(widget: Item) {
     return this.http.delete(this.getUrlWithId(widget.id));
-    }
+  }
 
   private getUrl() {
     return `${API_ENDPOINT}${this.model}`;

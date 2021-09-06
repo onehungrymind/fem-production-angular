@@ -6,7 +6,7 @@
     </fem-widgets-list>
   </div>
   <div class="details-component">
-    <fem-widget-details [widget]="selectedWidget"
+    <fem-widget-details [widget]="selectedWidget$ | async"
       (saved)="saveWidget($event)"
       (cancelled)="resetForm()">
     </fem-widget-details>

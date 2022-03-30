@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { WidgetsComponent } from './widgets/widgets.component';
 
-const routes: Routes = [
+const routes: Route = [
   { path: '', component: HomeComponent },
   { path: 'widgets', component: WidgetsComponent },
   { path: '**', redirectTo: '/' },

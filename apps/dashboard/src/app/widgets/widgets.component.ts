@@ -21,6 +21,7 @@ const emptyWidget: Widget = {
   styleUrls: ['./widgets.component.scss'],
 })
 export class WidgetsComponent implements OnInit {
+  widgets  : Widget[];
   widgets$: Observable<Widget[]>;
   selectedWidget: Widget;
 

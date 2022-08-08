@@ -16,9 +16,12 @@ The sample project includes an Angular web application and a mock RESTful API  w
 ```
 git clone https://github.com/onehungrymind/fem-production-angular.git
 cd fem-production-angular
-yarn
+npm i --force
 npm run serve:all
 ```
+
+### Installation Note
+Due to some peer dependency issues, use `npm i --force` when installing the dependencies.
 
 The `serve:all` command is a convenience methods that runs the `serve:api` and `serve:web` commands concurrently. You can run each command separately if you need to.
 
